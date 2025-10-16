@@ -1,192 +1,72 @@
 import 'package:flutter/material.dart';
 
-class SettingsSection extends StatefulWidget {
-  const SettingsSection({super.key, required this.title, required this.tiles});
+import 'package:crop_care/core/theme/app_colors.dart';
+
+class SettingsSections extends StatefulWidget {
+  const SettingsSections({
+    super.key,
+    required this.title,
+    required this.tiles,
+    required this.icon,
+  });
   final String title;
+  final IconData icon;
   final List<Widget> tiles;
 
+  List<Widget> _buildTilsWithDividers() {
+    final List<Widget> items = [];
+    for (int i = 0; i < tiles.length; i++) {
+      items.add(tiles[i]);
+      if (i < tiles.length - 1) {
+        items.add(
+          const Divider(
+            thickness: 1,
+            color: Colors.black26,
+            indent: 16,
+            endIndent: 16,
+          ),
+        );
+      }
+    }
+    return items;
+  }
+
   @override
-  State<SettingsSection> createState() => _SettingsSectionState();
+  State<SettingsSections> createState() => _SettingsSectionState();
 }
 
-class _SettingsSectionState extends State<SettingsSection> {
+class _SettingsSectionState extends State<SettingsSections> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.title,
-          style: TextStyle(
-            color: const Color.fromARGB(191, 65, 65, 65),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        sectionTitle(),
 
         const SizedBox(height: 16),
         Container(
+          // section container
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: const Color.fromARGB(193, 228, 247, 222),
+            color: const Color.fromARGB(193, 237, 245, 235),
           ),
-          child: Column(children: [...widget.tiles]),
+          child: Column(children: [...widget._buildTilsWithDividers()]),
         ),
       ],
     );
   }
-}
 
-class GeneralSettingsSection extends StatelessWidget {
-  const GeneralSettingsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Row sectionTitle() {
+    return Row(
       children: [
+        Icon(color: AppColors.primary, widget.icon, size: 22),
+        const SizedBox(width: 8),
         Text(
-          'General',
+          widget.title, // section title
           style: TextStyle(
-            color: const Color.fromARGB(191, 65, 65, 65),
+            color: const Color.fromARGB(191, 65, 65, 65), // section title color
             fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromARGB(193, 228, 247, 222),
-          ),
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.language),
-                title: Text('Languages'),
-                subtitle: Text('English'),
-                trailing: Icon(Icons.arrow_forward_ios),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-              ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Notifications'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-
-              ListTile(
-                leading: Icon(Icons.dark_mode),
-                title: Text('Dark Mode'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class DataAndPrivacySettingsSection extends StatelessWidget {
-  const DataAndPrivacySettingsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Data & Privacy',
-          style: TextStyle(
-            color: const Color.fromARGB(191, 65, 65, 65),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromARGB(193, 228, 247, 222),
-          ),
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.language),
-                title: Text('Languages'),
-                subtitle: Text('English'),
-                trailing: Icon(Icons.arrow_forward_ios),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-
-              ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Notifications'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-
-              ListTile(
-                leading: Icon(Icons.dark_mode),
-                title: Text('Dark Mode'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class SupportSettingsSection extends StatelessWidget {
-  const SupportSettingsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Support',
-          style: TextStyle(
-            color: const Color.fromARGB(191, 65, 65, 65),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromARGB(193, 228, 247, 222),
-          ),
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.language),
-                title: Text('Languages'),
-                subtitle: Text('English'),
-                trailing: Icon(Icons.arrow_forward_ios),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-
-              ListTile(
-                leading: Icon(Icons.notifications),
-                title: Text('Notifications'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-              Divider(thickness: 1, color: Colors.black26),
-
-              ListTile(
-                leading: Icon(Icons.dark_mode),
-                title: Text('Dark Mode'),
-                subtitle: Text('English'),
-                trailing: Switch(value: true, onChanged: (_) {}),
-              ),
-            ],
+            fontSize: 18,
           ),
         ),
       ],

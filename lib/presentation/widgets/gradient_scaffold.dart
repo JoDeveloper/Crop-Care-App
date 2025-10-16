@@ -22,7 +22,7 @@ class GradientScaffold extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [const Color.fromARGB(255, 214, 255, 215), Colors.white],
+                colors: [const Color.fromARGB(255, 234, 255, 235), Colors.white],
                 begin: AlignmentGeometry.topCenter,
                 end: AlignmentGeometry.bottomCenter,
               ),

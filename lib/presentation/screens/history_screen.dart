@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
 
-class HistoryScreen extends StatefulWidget {
+class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
-  @override
-  State<HistoryScreen> createState() => _HistoryScreenState();
-}
-
-class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
