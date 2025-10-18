@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:crop_care/core/theme/app_colors.dart';
-import 'package:crop_care/presentation/screens/history_screen.dart';
 import 'package:crop_care/presentation/widgets/settings_section.dart';
 import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
 
@@ -14,6 +13,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool notificationToggle = false;
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
@@ -38,11 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'General',
                   tiles: [
                     ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => HistoryScreen()),
-                        );
-                      },
+                      onTap: () {},
                       leading: Icon(Icons.language),
                       title: Text('Languages'),
                       subtitle: Text('English'),
@@ -56,7 +52,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         value: notificationToggle,
                         onChanged: (newValue) {
                           setState(() {
-                            notificationToggle = newValue;
+                            notificationToggle =
+                                newValue; // TODO state managment with reverpod
                           });
                         },
                       ),
@@ -117,11 +114,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'data & Privacy',
                   tiles: [
                     ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => HistoryScreen()),
-                        );
-                      },
+                      onTap: () {},
                       leading: Icon(Icons.restore_from_trash_rounded),
                       title: Text('Clear History'),
                       subtitle: Text('Remove all analysis history'),
@@ -169,7 +162,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 16),
+
+                /// About App Section
+                /// 
+                /// this is the last section in the settings screen .
+                /// this section had additon elements, soo I make a new widget called [AboutApp()] 
+                /// contains the addition elements and configuration the needs.
                 AboutApp(),
               ],
             ),
@@ -188,10 +188,12 @@ class AboutApp extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       width: double.infinity,
+
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: const Color.fromARGB(193, 237, 245, 235),
       ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -203,17 +205,20 @@ class AboutApp extends StatelessWidget {
 
               borderRadius: BorderRadius.circular(200),
             ),
+
             child: Icon(
               Icons.eco,
               size: 80,
               color: const Color.fromARGB(171, 46, 46, 46),
             ),
           ),
+
           const SizedBox(height: 20),
           Text(
             'Crop Care',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
+
           const SizedBox(height: 8),
           Text(
             'Verstion 1.0.0',
@@ -222,6 +227,7 @@ class AboutApp extends StatelessWidget {
               color: const Color.fromARGB(195, 53, 53, 53),
             ),
           ),
+
           const SizedBox(height: 8),
           Text(
             'AI-Power Plant Disease Detection',
@@ -230,6 +236,7 @@ class AboutApp extends StatelessWidget {
               color: const Color.fromARGB(195, 53, 53, 53),
             ),
           ),
+
           const SizedBox(height: 8),
           const Divider(
             thickness: 1,
@@ -237,27 +244,50 @@ class AboutApp extends StatelessWidget {
             indent: 16,
             endIndent: 16,
           ),
+
           const SizedBox(height: 8),
           Text(
-            'Helping farmers identify crop disease with advanced AI technology. Built with care for the agrecultural community.',
+            'Helping farmers identify crop disease with advanced AI technology. '
+            'Built with care for the agrecultural community.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
               color: const Color.fromARGB(195, 53, 53, 53),
             ),
           ),
-          const SizedBox(height: 12),
 
+          const SizedBox(height: 50),
           ListTile(
-            onTap: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (ctx) => HistoryScreen()));
-            },
+            onTap: () {},
             leading: Icon(Icons.groups_outlined),
             title: Text('Development Team'),
             subtitle: Text('Meet the creators'),
             trailing: Icon(Icons.arrow_forward_ios),
+          ),
+
+          const SizedBox(height: 8),
+          const Divider(
+            thickness: 1,
+            color: Colors.black26,
+            indent: 16,
+            endIndent: 16,
+          ),
+
+          const SizedBox(height: 8),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 12,
+                color: const Color.fromARGB(195, 53, 53, 53),
+              ),
+              children: [
+                const TextSpan(text: '2025 Crop Care. Made with '),
+                WidgetSpan(
+                  child: Icon(Icons.favorite, size: 16, color: Colors.red),
+                ),
+                const TextSpan(text: ' for farmers worldwide.'),
+              ],
+            ),
           ),
         ],
       ),
