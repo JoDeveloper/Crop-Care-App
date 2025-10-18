@@ -60,6 +60,7 @@ class _SettingsSectionState extends State<SettingsSections> {
     return Row(
       children: [
         Icon(color: AppColors.primary, widget.icon, size: 22),
+
         const SizedBox(width: 8),
         Text(
           widget.title, // section title
