@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 
-class HistoryScreen extends StatelessWidget {
-  static const String routeName = '/history';
+import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
 
+class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(title: const Text('History')),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('History will be listed here.'),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false),
-              child: const Text('Back to Home'),
-            ),
-          ],
+    return GradientScaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        // elevation: 0,
+        title: Text(
+          'Analysis History',
+          style: TextStyle(fontWeight: FontWeight.w400),
         ),
       ),
+      body: Container(),
     );
   }
 }
-
-

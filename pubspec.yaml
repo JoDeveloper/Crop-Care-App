@@ -28,19 +28,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bloc: ^9.0.1   # A predictable state management library that helps implement the BLoC (Business Logic Component) design pattern.
-  camera: ^0.11.2 # A Flutter plugin for accessing the camera on Android and iOS devices.
   cupertino_icons: ^1.0.8 # A package that provides a set of high-quality icons for iOS-style (Cupertino) apps.
   flutter:
     sdk: flutter
-  hive: ^2.2.3  # A lightweight and fast key-value database written in pure Dart for Flutter applications.
-  hive_flutter: ^1.1.0 # A Flutter extension for Hive, a lightweight and fast key-value database written in pure Dart.
-  hive_generator: ^2.0.1 # A code generator for Hive, a lightweight and fast key-value database written in pure Dart.
-  http: ^1.5.0 # A composable, Future-based library for making HTTP requests in Dart.
-  image_picker: ^1.2.0 # A Flutter plugin for selecting images from the device's gallery or taking new pictures with the camera.
-  provider: ^6.1.5+1 # A Flutter package for state management using the Provider pattern.
-  tensorflow_lite_flutter: ^3.0.0 # A Flutter plugin for running TensorFlow Lite models on mobile devices.
-  tflite_flutter: ^0.11.0 # A Flutter plugin for running TensorFlow Lite models on mobile devices.
 
 dev_dependencies:
   flutter_lints: ^5.0.0
