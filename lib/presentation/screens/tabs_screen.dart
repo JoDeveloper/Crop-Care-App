@@ -24,12 +24,14 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     // Determine which page to show based on selected tab
-    Widget activePage = HomeScreen();
+    Widget activePage = const HomeScreen();
+
+   
 
     if (_selectedPageIndex == 1) {
-      activePage = HistoryScreen();
+      activePage = const HistoryScreen();
     } else if (_selectedPageIndex == 2) {
-      activePage = SettingsScreen();
+      activePage = const SettingsScreen();
     }
 
     return GradientScaffold(

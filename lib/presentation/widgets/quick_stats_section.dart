@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 class QuickStatsSection extends StatelessWidget {
-  const QuickStatsSection({
-    super.key,
-  });
+  const QuickStatsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,52 +29,36 @@ class QuickStatsSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(),
-    
-              Column(
-                children: [
-                  Text(
-                    '145',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Crops Analyzed',
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 102, 102, 102),
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    '95%',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Accuracy Rate',
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 102, 102, 102),
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
+              statusSection('145', 'Crop Analyzed'),
+              statusSection('95%', 'Accuracy Rate'),
               const SizedBox(),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Column statusSection(String mainStatus, String descreption) {
+    return Column(
+      children: [
+        Text(
+          mainStatus,
+          style: TextStyle(
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          descreption,
+          style: TextStyle(
+            color: const Color.fromARGB(255, 102, 102, 102),
+            fontSize: 12,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -31,7 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           const SizedBox(height: 16),
-          const CustomCaptureContainer(
+          CustomCaptureContainer(
+            onTap: () {},
             title: 'Capture Image',
             subTitle: 'Take a photo of your crop leaf',
             icon: Icons.camera_alt,
@@ -40,10 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           const SizedBox(height: 14),
-          const CustomCaptureContainer(
+          CustomCaptureContainer(
+            onTap: () {},
             title: 'Uploade Image',
             subTitle: 'Select from your gallery',
-            icon: Icons.upload,
+            icon: Icons.upload_rounded,
             color1: Color.fromARGB(255, 238, 173, 52),
             color2: Color.fromARGB(255, 208, 140, 22),
           ),

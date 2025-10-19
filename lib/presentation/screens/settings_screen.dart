@@ -1,3 +1,4 @@
+import 'package:crop_care/presentation/widgets/about_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:crop_care/core/theme/app_colors.dart';
@@ -12,7 +13,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool notificationToggle = false;
+  bool notificationToggle = true;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text('Dark Mode'),
                       subtitle: Text('English'),
                       trailing: Switch(
-                        value: true,
+                        value: false,
                         onChanged: (newValue) {
                           setState(() {});
                         },
@@ -72,11 +73,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 20),
-
                 /// Help & Support Section
                 ///
                 /// this section is about Help & Support it contains User guid, Contact Support and Rate The App
+                const SizedBox(height: 20),
                 SettingsSections(
                   icon: Icons.live_help_outlined,
                   title: 'Help & Support',
@@ -121,12 +121,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.privacy_tip),
                       title: Text('Privacy Policy'),
                       subtitle: Text('Learn about data usage'),
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.menu_book_rounded),
                       title: Text('Terms Of Service'),
                       subtitle: Text('Usage terms and conditions'),
@@ -166,126 +168,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(height: 16),
 
                 /// About App Section
-                /// 
+                ///
                 /// this is the last section in the settings screen .
-                /// this section had additon elements, soo I make a new widget called [AboutApp()] 
+                /// this section had additon elements, soo I make a new widget called [AboutApp()]
                 /// contains the addition elements and configuration the needs.
                 AboutApp(),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AboutApp extends StatelessWidget {
-  const AboutApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      width: double.infinity,
-
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(193, 237, 245, 235),
-      ),
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-
-              borderRadius: BorderRadius.circular(200),
-            ),
-
-            child: Icon(
-              Icons.eco,
-              size: 80,
-              color: const Color.fromARGB(171, 46, 46, 46),
-            ),
-          ),
-
-          const SizedBox(height: 20),
-          Text(
-            'Crop Care',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-
-          const SizedBox(height: 8),
-          Text(
-            'Verstion 1.0.0',
-            style: TextStyle(
-              fontSize: 16,
-              color: const Color.fromARGB(195, 53, 53, 53),
-            ),
-          ),
-
-          const SizedBox(height: 8),
-          Text(
-            'AI-Power Plant Disease Detection',
-            style: TextStyle(
-              fontSize: 16,
-              color: const Color.fromARGB(195, 53, 53, 53),
-            ),
-          ),
-
-          const SizedBox(height: 8),
-          const Divider(
-            thickness: 1,
-            color: Colors.black26,
-            indent: 16,
-            endIndent: 16,
-          ),
-
-          const SizedBox(height: 8),
-          Text(
-            'Helping farmers identify crop disease with advanced AI technology. '
-            'Built with care for the agrecultural community.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: const Color.fromARGB(195, 53, 53, 53),
-            ),
-          ),
-
-          const SizedBox(height: 50),
-          ListTile(
-            onTap: () {},
-            leading: Icon(Icons.groups_outlined),
-            title: Text('Development Team'),
-            subtitle: Text('Meet the creators'),
-            trailing: Icon(Icons.arrow_forward_ios),
-          ),
-
-          const SizedBox(height: 8),
-          const Divider(
-            thickness: 1,
-            color: Colors.black26,
-            indent: 16,
-            endIndent: 16,
-          ),
-
-          const SizedBox(height: 8),
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 12,
-                color: const Color.fromARGB(195, 53, 53, 53),
-              ),
-              children: [
-                const TextSpan(text: '2025 Crop Care. Made with '),
-                WidgetSpan(
-                  child: Icon(Icons.favorite, size: 16, color: Colors.red),
-                ),
-                const TextSpan(text: ' for farmers worldwide.'),
               ],
             ),
           ),

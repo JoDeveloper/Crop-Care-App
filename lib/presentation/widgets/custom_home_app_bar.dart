@@ -31,7 +31,7 @@ class CustomHomeAppBar extends StatelessWidget {
                 ),
 
                 const Text(
-                  'AI-Power disease ditecton',
+                  'AI-Powered disease ditecton',
                   style: TextStyle(color: Colors.white70, fontSize: 15),
                 ),
               ],
