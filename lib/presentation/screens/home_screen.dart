@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/presentation/widgets/quick_stats_section.dart';
+import 'package:crop_care/presentation/widgets/quick_status_section.dart';
 import 'package:crop_care/presentation/widgets/custom_capture_container.dart';
 import 'package:crop_care/presentation/widgets/custom_home_app_bar.dart';
 

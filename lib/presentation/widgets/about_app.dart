@@ -8,7 +8,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: double.infinity,
 
       decoration: BoxDecoration(
@@ -28,34 +28,34 @@ class AboutApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(200),
             ),
 
-            child: Icon(
+            child: const Icon(
               Icons.eco,
               size: 80,
-              color: const Color.fromARGB(171, 46, 46, 46),
+              color:  Color.fromARGB(171, 46, 46, 46),
             ),
           ),
 
           const SizedBox(height: 20),
-          Text(
+          const Text(
             'Crop Care',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
 
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Verstion 1.0.0',
             style: TextStyle(
               fontSize: 16,
-              color: const Color.fromARGB(195, 53, 53, 53),
+              color:  Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'AI-Power Plant Disease Detection',
             style: TextStyle(
               fontSize: 16,
-              color: const Color.fromARGB(195, 53, 53, 53),
+              color:  Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
@@ -68,23 +68,23 @@ class AboutApp extends StatelessWidget {
           ),
 
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Helping farmers identify crop disease with advanced AI technology. '
             'Built with care for the agrecultural community.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color: const Color.fromARGB(195, 53, 53, 53),
+              color:  Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
           const SizedBox(height: 50),
           ListTile(
             onTap: () {},
-            leading: Icon(Icons.groups_outlined),
-            title: Text('Development Team'),
-            subtitle: Text('Meet the creators'),
-            trailing: Icon(Icons.arrow_forward_ios),
+            leading: const Icon(Icons.groups_outlined),
+            title: const Text('Development Team'),
+            subtitle: const Text('Meet the creators'),
+            trailing: const Icon(Icons.arrow_forward_ios),
           ),
 
           const SizedBox(height: 8),
@@ -97,17 +97,17 @@ class AboutApp extends StatelessWidget {
 
           const SizedBox(height: 8),
           RichText(
-            text: TextSpan(
+            text: const TextSpan(
               style: TextStyle(
                 fontSize: 12,
-                color: const Color.fromARGB(195, 53, 53, 53),
+                color:  Color.fromARGB(195, 53, 53, 53),
               ),
               children: [
-                const TextSpan(text: '2025 Crop Care. Made with '),
+                 TextSpan(text: '2025 Crop Care. Made with '),
                 WidgetSpan(
-                  child: Icon(Icons.favorite, size: 16, color: Colors.red),
+                  child:  Icon(Icons.favorite, size: 16, color: Colors.red),
                 ),
-                const TextSpan(text: ' for farmers worldwide.'),
+                 TextSpan(text: ' for farmers worldwide.'),
               ],
             ),
           ),

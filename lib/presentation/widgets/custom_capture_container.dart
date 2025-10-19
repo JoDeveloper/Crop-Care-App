@@ -17,6 +17,8 @@ class CustomCaptureContainer extends StatelessWidget {
   final Color color2;
   final void Function() onTap;
 
+
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

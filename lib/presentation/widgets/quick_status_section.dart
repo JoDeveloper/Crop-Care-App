@@ -17,7 +17,7 @@ class QuickStatsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Quick Stats',
+            'Quick Status',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
