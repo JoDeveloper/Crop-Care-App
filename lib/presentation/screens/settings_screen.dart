@@ -1,9 +1,9 @@
-import 'package:crop_care/presentation/widgets/about_app.dart';
+import 'package:crop_care_app/presentation/widgets/about_app.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/core/theme/app_colors.dart';
-import 'package:crop_care/presentation/widgets/settings_section.dart';
-import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
+import 'package:crop_care_app/core/theme/app_colors.dart';
+import 'package:crop_care_app/presentation/widgets/settings_section.dart';
+import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

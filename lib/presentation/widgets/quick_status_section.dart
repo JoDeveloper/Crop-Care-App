@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class QuickStatsSection extends StatelessWidget {
+class QuickStatsSection extends StatefulWidget {
   const QuickStatsSection({super.key});
 
+  @override
+  State<QuickStatsSection> createState() => _QuickStatsSectionState();
+}
+
+class _QuickStatsSectionState extends State<QuickStatsSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,7 +50,7 @@ class QuickStatsSection extends StatelessWidget {
         Text(
           mainStatus,
           style: TextStyle(
-            color: Colors.green,
+            color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),

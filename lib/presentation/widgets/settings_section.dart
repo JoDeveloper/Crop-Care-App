@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/core/theme/app_colors.dart';
+import 'package:crop_care_app/core/theme/app_colors.dart';
 
 class SettingsSections extends StatefulWidget {
   const SettingsSections({

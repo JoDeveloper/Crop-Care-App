@@ -1,4 +1,4 @@
-name: crop_care
+name: crop_care_app
 description: "app that helps farmers and agronomists quickly validate crop health from a leaf photo, preview an AI diagnosis."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
