@@ -16,7 +16,7 @@ class _QuickStatsSectionState extends State<QuickStatsSection> {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(193, 237, 245, 235),
+        color: const Color.fromARGB(15, 24, 121, 0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

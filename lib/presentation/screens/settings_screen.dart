@@ -1,6 +1,6 @@
-import 'package:crop_care_app/presentation/widgets/about_app.dart';
 import 'package:flutter/material.dart';
 
+import 'package:crop_care_app/presentation/widgets/about_app.dart';
 import 'package:crop_care_app/core/theme/app_colors.dart';
 import 'package:crop_care_app/presentation/widgets/settings_section.dart';
 import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
@@ -164,7 +164,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 16),
 
                 /// About App Section

@@ -1,7 +1,7 @@
-import 'package:crop_care_app/presentation/widgets/history_searh_bar.dart';
-import 'package:crop_care_app/presentation/widgets/total_healthy_deasise_filter.dart';
 import 'package:flutter/material.dart';
 
+import 'package:crop_care_app/presentation/widgets/history_searh_bar.dart';
+import 'package:crop_care_app/presentation/widgets/total_healthy_deasise_filter.dart';
 import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -15,6 +15,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
   final TextEditingController controller = TextEditingController();
   final isSelected = false;
   String _filterType = 'all'; // all, healthy, diseased
+
+  void _onFilterChanged(String filter) {
+    setState(() {
+      _filterType = filter;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
@@ -22,11 +29,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         // elevation: 0,
-        title: Text(
+        title: const Text(
           'Analysis History',
           style: TextStyle(fontWeight: FontWeight.w400),
         ),
       ),
+
       body: ListView(
         children: [
           Padding(
@@ -34,19 +42,21 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
             child: Column(
               children: [
+                // TotalHealthyDeasiseFilter
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     TotalHealthyDeasiseFilter(name: 'Total'),
                     TotalHealthyDeasiseFilter(name: 'Healthy'),
                     TotalHealthyDeasiseFilter(name: 'Diseased'),
                   ],
                 ),
-
                 const SizedBox(height: 20),
-                HistorySearhBar(),
-                const SizedBox(height: 14),
 
+                // HistorySearhBar
+                const HistorySearhBar(),
+                const SizedBox(height: 14),
+                
                 // Filter Buttons
                 Row(
                   children: [
@@ -59,7 +69,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
 
                 const SizedBox(height: 20),
-                _buildEmptyState(),
+                _buildEmptyHistoryState(),
               ],
             ),
           ),
@@ -68,7 +78,24 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildFilterChip(String label, String value) {
+    final isSelected = _filterType == value;
+    return FilterChip(
+      label: Text(label),
+      selected: isSelected,
+      onSelected: (_) => _onFilterChanged(value),
+      backgroundColor: Colors.white,
+      selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+      checkmarkColor: Theme.of(context).colorScheme.primary,
+      side: BorderSide(
+        color: isSelected
+            ? Theme.of(context).colorScheme.primary
+            : Colors.grey[300]!,
+      ),
+    );
+  }
+
+  Widget _buildEmptyHistoryState() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.only(top: 100),
@@ -93,30 +120,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _onFilterChanged(String filter) {
-    setState(() {
-      _filterType = filter;
-    });
-    
-  }
-
-  Widget _buildFilterChip(String label, String value) {
-    final isSelected = _filterType == value;
-    return FilterChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (_) => _onFilterChanged(value),
-      backgroundColor: Colors.white,
-      selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-      checkmarkColor: Theme.of(context).colorScheme.primary,
-      side: BorderSide(
-        color: isSelected
-            ? Theme.of(context).colorScheme.primary
-            : Colors.grey[300]!,
       ),
     );
   }

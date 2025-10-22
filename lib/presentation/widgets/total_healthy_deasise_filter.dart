@@ -7,7 +7,7 @@ class TotalHealthyDeasiseFilter extends StatelessWidget {
     return name == 'Total'
         ? const Color.fromARGB(255, 65, 87, 255)
         : name == 'Healthy'
-        ? Colors.green
+        ? const Color(0xFF22C55E)
         : name == 'Diseased'
         ? const Color.fromARGB(255, 255, 83, 83)
         : Colors.black;
@@ -37,6 +37,7 @@ class TotalHealthyDeasiseFilter extends StatelessWidget {
                 style: TextStyle(color: _getDeferenceColor(name), fontSize: 24),
               ),
               const SizedBox(height: 20),
+              
               Text(
                 name,
                 style: TextStyle(
