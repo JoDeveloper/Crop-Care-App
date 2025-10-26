@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
+import 'package:crop_care_app/presentation/screens/settings_screen.dart';
 
-class CustomCaptureContainer extends StatelessWidget {
-  const CustomCaptureContainer({
+class UploadeContainer extends StatelessWidget {
+  const UploadeContainer({
     super.key,
     required this.title,
     required this.subTitle,
@@ -23,7 +23,7 @@ class CustomCaptureContainer extends StatelessWidget {
       onTap: () {
         Navigator.of(
           context,
-        ).push(MaterialPageRoute(builder: (context) => CaptureTipsScreen()));
+        ).push(MaterialPageRoute(builder: (context) => SettingsScreen()));
       },
       child: Container(
         width: double.infinity,

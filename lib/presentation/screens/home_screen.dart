@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'package:crop_care_app/presentation/widgets/custom_uploase_container.dart';
 import 'package:crop_care_app/presentation/widgets/quick_status_section.dart';
 import 'package:crop_care_app/presentation/widgets/custom_capture_container.dart';
 import 'package:crop_care_app/presentation/widgets/custom_home_app_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,7 +35,6 @@ class HomeScreen extends StatelessWidget {
 
           // take photo section ===================
           CustomCaptureContainer(
-            onTap: () {},
             title: 'Capture Image',
             subTitle: 'Take a photo of your crop leaf',
             icon: Icons.camera_alt,
@@ -39,12 +44,13 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 14),
 
           // uploade photo section ===================
-          CustomCaptureContainer(
-            onTap: () {},
+          CustomUploadeContainer(
             title: 'Uploade Image',
             subTitle: 'Select from your gallery',
             icon: Icons.upload_rounded,
-           color1: Theme.of(context).colorScheme.secondary.withValues(alpha: .8),
+            color1: Theme.of(
+              context,
+            ).colorScheme.secondary.withValues(alpha: .8),
             color2: Theme.of(context).colorScheme.secondary,
           ),
           const SizedBox(height: 22),
