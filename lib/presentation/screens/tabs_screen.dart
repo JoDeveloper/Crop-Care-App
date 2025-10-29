@@ -38,13 +38,13 @@ class _TabsScreenState extends State<TabsScreen> {
       extendBodyBehindAppBar: true,
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
-        fixedColor: Colors.green,
+        fixedColor: Theme.of(context).colorScheme.primary,
         elevation: 5,
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(Icons.history_rounded), label: 'History'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',

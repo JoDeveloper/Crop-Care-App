@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/widgets/custom_uploase_container.dart';
 import 'package:crop_care_app/presentation/widgets/quick_status_section.dart';
 import 'package:crop_care_app/presentation/widgets/custom_capture_container.dart';
 import 'package:crop_care_app/presentation/widgets/custom_home_app_bar.dart';
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 14),
 
           // uploade photo section ===================
-          CustomUploadeContainer(
+          CustomCaptureContainer(
             title: 'Uploade Image',
             subTitle: 'Select from your gallery',
             icon: Icons.upload_rounded,

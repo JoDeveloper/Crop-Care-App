@@ -28,7 +28,7 @@ class CaptureTipsScreen extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.end,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 180),
+                const SizedBox(height: 220),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 34),
                   padding: EdgeInsets.all(22),
@@ -65,29 +65,14 @@ class CaptureTipsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 18),
-
-                CaptureContainer(
-                  title: 'Capture Image',
-                  subTitle: 'Take a photo of your crop leaf',
-                  icon: Icons.camera_alt,
-                  color1: Theme.of(
-                    context,
-                  ).colorScheme.primary.withValues(alpha: .8),
-                  color2: Theme.of(context).colorScheme.primary,
-                ),
+                const SizedBox(height: 28),
+                
+                // capture photo section ===================
+                const CaptureContainer(),
                 const SizedBox(height: 14),
 
                 // uploade photo section ===================
-                UploadeContainer(
-                  title: 'Uploade Image',
-                  subTitle: 'Select from your gallery',
-                  icon: Icons.upload_rounded,
-                  color1: Theme.of(
-                    context,
-                  ).colorScheme.secondary.withValues(alpha: .8),
-                  color2: Theme.of(context).colorScheme.secondary,
-                ),
+                const UploadeContainer(),
               ],
             ),
           ),

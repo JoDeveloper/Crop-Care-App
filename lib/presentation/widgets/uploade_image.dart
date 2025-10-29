@@ -3,70 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:crop_care_app/presentation/screens/settings_screen.dart';
 
 class UploadeContainer extends StatelessWidget {
-  const UploadeContainer({
-    super.key,
-    required this.title,
-    required this.subTitle,
-    required this.icon,
-    required this.color1,
-    required this.color2,
-  });
-  final String title;
-  final String subTitle;
-  final IconData icon;
-  final Color color1;
-  final Color color2;
+  const UploadeContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(
-          context,
-        ).push(MaterialPageRoute(builder: (context) => SettingsScreen()));
-      },
-      child: Container(
-        width: double.infinity,
-        height: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(colors: [color1, color2]),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFEAB308),
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 16),
         ),
-        child: Padding(
-          padding: EdgeInsetsGeometry.all(20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.white24,
-                ),
-                child: Icon(icon, color: Colors.white, size: 30),
-              ),
-
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    subTitle,
-                    style: TextStyle(color: Colors.white70, fontSize: 15),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.upload),
+            SizedBox(width: 8),
+            Text('Upload from Gallery', style: TextStyle(fontSize: 16)),
+          ],
         ),
       ),
     );
