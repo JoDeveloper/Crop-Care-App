@@ -14,6 +14,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool notificationToggle = true;
+  bool darkModeToggle = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +63,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ListTile(
                       leading: Icon(Icons.dark_mode),
                       title: Text('Dark Mode'),
-                      subtitle: Text('English'),
+                      subtitle: Text('Light'),
                       trailing: Switch(
-                        value: false,
+                        value: darkModeToggle,
                         onChanged: (newValue) {
-                          setState(() {});
+                          setState(() {
+                            darkModeToggle =
+                                newValue; // TODO state managment with reverpod
+                          });
                         },
                       ),
                     ),

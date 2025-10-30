@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
+import 'package:crop_care_app/presentation/screens/result_screen.dart';
+
 class ImagePreviewScreen extends StatelessWidget {
   const ImagePreviewScreen({super.key});
 
@@ -7,9 +10,7 @@ class ImagePreviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 234, 255, 235),
-      appBar: AppBar(
-        title: Text('Analyze Your Crop'),
-      ),
+      appBar: AppBar(title: Text('Analyze Your Crop')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -29,12 +30,16 @@ class ImagePreviewScreen extends StatelessWidget {
               ),
             ),
             // const SizedBox(height: 16),
-        
+
             // Analysis Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (ctx) => ResultScreen()));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Colors.white,
@@ -51,12 +56,16 @@ class ImagePreviewScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-        
+
             // Choose Different Image Button
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => CaptureTipsScreen()),
+                  );
+                },
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
@@ -65,13 +74,15 @@ class ImagePreviewScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.image),
                     SizedBox(width: 8),
-                    Text('Choose Different Image', style: TextStyle(fontSize: 16)),
+                    Text(
+                      'Choose Different Image',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 16),
-
           ],
         ),
       ),
