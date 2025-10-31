@@ -31,7 +31,28 @@ class _ResultScreenState extends State<ResultScreen> {
                     padding: const EdgeInsets.all(4),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
-                      child: Image.asset('assets/images/8.png'),
+                      child: Hero(
+                        tag: 'preview-image',
+                        child: Image.asset(
+                          'assets/images/2.jpeg',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                          alignment: Alignment.center,
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            color: Colors.grey[200],
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.broken_image, size: 48, color: Colors.grey[600]),
+                                const SizedBox(height: 8),
+                                Text('Image not available', style: TextStyle(color: Colors.grey[700])),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -117,6 +138,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
                 const SizedBox(height: 20),
 
+                // Analyze Another Crop Button
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -147,7 +169,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Choose Different Image Button
+                // Back to Home Button
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(

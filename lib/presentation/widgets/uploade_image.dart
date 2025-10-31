@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/screens/settings_screen.dart';
-
 class UploadeContainer extends StatelessWidget {
   const UploadeContainer({super.key});
 

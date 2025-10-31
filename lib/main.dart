@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:crop_care_app/presentation/screens/tabs_screen.dart';
 import 'package:crop_care_app/core/theme/app_theme.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(
@@ -41,6 +41,7 @@ void main() {
       ),
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
+      
       home: TabsScreen(),
     ),
   );

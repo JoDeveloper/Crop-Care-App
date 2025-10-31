@@ -31,7 +31,7 @@ class AboutApp extends StatelessWidget {
             child: const Icon(
               Icons.eco,
               size: 80,
-              color:  Color.fromARGB(171, 46, 46, 46),
+              color: Color.fromARGB(171, 46, 46, 46),
             ),
           ),
 
@@ -46,7 +46,7 @@ class AboutApp extends StatelessWidget {
             'Verstion 1.0.0',
             style: TextStyle(
               fontSize: 16,
-              color:  Color.fromARGB(195, 53, 53, 53),
+              color: Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
@@ -55,7 +55,7 @@ class AboutApp extends StatelessWidget {
             'AI-Power Plant Disease Detection',
             style: TextStyle(
               fontSize: 16,
-              color:  Color.fromARGB(195, 53, 53, 53),
+              color: Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
@@ -74,13 +74,17 @@ class AboutApp extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              color:  Color.fromARGB(195, 53, 53, 53),
+              color: Color.fromARGB(195, 53, 53, 53),
             ),
           ),
 
           const SizedBox(height: 50),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('coming soon.')));
+            },
             leading: const Icon(Icons.groups_outlined),
             title: const Text('Development Team'),
             subtitle: const Text('Meet the creators'),
@@ -100,14 +104,14 @@ class AboutApp extends StatelessWidget {
             text: const TextSpan(
               style: TextStyle(
                 fontSize: 12,
-                color:  Color.fromARGB(195, 53, 53, 53),
+                color: Color.fromARGB(195, 53, 53, 53),
               ),
               children: [
-                 TextSpan(text: '2025 Crop Care. Made with '),
+                TextSpan(text: '2025 Crop Care. Made with '),
                 WidgetSpan(
-                  child:  Icon(Icons.favorite, size: 16, color: Colors.red),
+                  child: Icon(Icons.favorite, size: 16, color: Colors.red),
                 ),
-                 TextSpan(text: ' for farmers worldwide.'),
+                TextSpan(text: ' for farmers worldwide.'),
               ],
             ),
           ),
