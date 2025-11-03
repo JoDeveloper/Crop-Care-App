@@ -28,7 +28,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   child: Container(
                     height: 300,
                     width: double.infinity,
-                    padding: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(8),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Hero(

@@ -12,7 +12,7 @@ class ImagePreviewScreen extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 234, 255, 235),
       appBar: AppBar(title: Text('Analyze Your Crop')),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             // Image Preview
@@ -21,8 +21,8 @@ class ImagePreviewScreen extends StatelessWidget {
                 // shape: BeveledRectangleBorder(borderRadius: BorderRadiusGeometry.circular(20)),
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                    child: ClipRRect(
+                  padding: const EdgeInsets.all(8),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Hero(
                       tag: 'preview-image',
@@ -32,21 +32,29 @@ class ImagePreviewScreen extends StatelessWidget {
                         maxScale: 4.0,
                         child: Image.asset(
                           'assets/images/2.jpeg',
-                          fit: BoxFit.contain,
+                          fit: BoxFit.fill,
                           width: double.infinity,
                           height: double.infinity,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey[200],
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.broken_image, size: 48, color: Colors.grey[600]),
-                                const SizedBox(height: 8),
-                                Text('Image not available', style: TextStyle(color: Colors.grey[700])),
-                              ],
-                            ),
-                          ),
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                                color: Colors.grey[200],
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.broken_image,
+                                      size: 48,
+                                      color: Colors.grey[600],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Image not available',
+                                      style: TextStyle(color: Colors.grey[700]),
+                                    ),
+                                  ],
+                                ),
+                              ),
                         ),
                       ),
                     ),
@@ -54,7 +62,7 @@ class ImagePreviewScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // const SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // Analysis Button
             SizedBox(
