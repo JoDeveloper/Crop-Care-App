@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/core/theme/color_schemes.dart';
-import 'package:crop_care/core/theme/text_style.dart';
+import 'package:crop_care_app/core/theme/color_schemes.dart';
+import 'package:crop_care_app/core/theme/text_style.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(

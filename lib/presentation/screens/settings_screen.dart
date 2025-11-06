@@ -1,9 +1,9 @@
-import 'package:crop_care/presentation/widgets/about_app.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/core/theme/app_colors.dart';
-import 'package:crop_care/presentation/widgets/settings_section.dart';
-import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
+import 'package:crop_care_app/presentation/widgets/about_app.dart';
+import 'package:crop_care_app/core/theme/app_colors.dart';
+import 'package:crop_care_app/presentation/widgets/settings_section.dart';
+import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,6 +14,8 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool notificationToggle = true;
+  bool darkModeToggle = false;
+  String _selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: 'General',
                   tiles: [
                     ListTile(
-                      onTap: () {},
+                      onTap: _showLanguageDialog,
                       leading: Icon(Icons.language),
                       title: Text('Languages'),
                       subtitle: Text('English'),
@@ -62,11 +64,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ListTile(
                       leading: Icon(Icons.dark_mode),
                       title: Text('Dark Mode'),
-                      subtitle: Text('English'),
+                      subtitle: Text('Light'),
                       trailing: Switch(
-                        value: false,
+                        value: darkModeToggle,
                         onChanged: (newValue) {
-                          setState(() {});
+                          setState(() {
+                            darkModeToggle =
+                                newValue; // TODO state managment with reverpod
+                          });
                         },
                       ),
                     ),
@@ -85,21 +90,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       leading: Icon(Icons.book),
                       title: Text('User Guid'),
                       subtitle: Text('Learn how to use crop care'),
-                      onTap: () {},
+                      onTap: _showHelpDialog,
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
                       leading: Icon(Icons.email),
                       title: Text('Contact Support'),
                       subtitle: Text('Get help from our team'),
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('feature coming soon.')),
+                        );
+                      },
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
                       leading: Icon(Icons.star_rounded),
                       title: Text('Rate The App'),
                       subtitle: Text('Share your feedback'),
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Thank you for your interest! Rating feature coming soon.',
+                            ),
+                          ),
+                        );
+                      },
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   ],
@@ -121,14 +138,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('feature coming soon.')),
+                        );
+                      },
                       leading: Icon(Icons.privacy_tip),
                       title: Text('Privacy Policy'),
                       subtitle: Text('Learn about data usage'),
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('feature coming soon.')),
+                        );
+                      },
                       leading: Icon(Icons.menu_book_rounded),
                       title: Text('Terms Of Service'),
                       subtitle: Text('Usage terms and conditions'),
@@ -164,7 +189,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 16),
 
                 /// About App Section
@@ -175,6 +199,86 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 AboutApp(),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showLanguageDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Select Language'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildLanguageOption('English'),
+            _buildLanguageOption('العربية'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageOption(String language) {
+    return RadioListTile<String>(
+      title: Text(language),
+      value: language,
+      groupValue: _selectedLanguage,
+      onChanged: (value) {
+        setState(() {
+          _selectedLanguage = value!;
+        });
+        //_saveSettings();
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  void _showHelpDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Help & Support'),
+        content: const SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'How to use Crop Care:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text('1. Capture or upload a clear image of the crop leaf'),
+              Text('2. Wait for AI analysis to complete'),
+              Text('3. Review the disease identification results'),
+              Text('4. Follow the recommended treatment steps'),
+              Text('5. Check your history for past analyses'),
+              SizedBox(height: 12),
+              Text(
+                'Tips for better results:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text('• Use good lighting conditions'),
+              Text('• Fill the frame with the leaf'),
+              Text('• Avoid blurry or dark images'),
+              Text('• Focus on affected areas'),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Got it'),
           ),
         ],
       ),

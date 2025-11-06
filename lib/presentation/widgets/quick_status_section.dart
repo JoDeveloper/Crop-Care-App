@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class QuickStatsSection extends StatelessWidget {
+class QuickStatsSection extends StatefulWidget {
   const QuickStatsSection({super.key});
 
+  @override
+  State<QuickStatsSection> createState() => _QuickStatsSectionState();
+}
+
+class _QuickStatsSectionState extends State<QuickStatsSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +16,7 @@ class QuickStatsSection extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color.fromARGB(193, 237, 245, 235),
+        color: const Color.fromARGB(15, 24, 121, 0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +50,7 @@ class QuickStatsSection extends StatelessWidget {
         Text(
           mainStatus,
           style: TextStyle(
-            color: Colors.green,
+            color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),

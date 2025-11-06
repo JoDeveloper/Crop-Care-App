@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
+
 class CustomCaptureContainer extends StatelessWidget {
   const CustomCaptureContainer({
     super.key,
@@ -8,21 +10,21 @@ class CustomCaptureContainer extends StatelessWidget {
     required this.icon,
     required this.color1,
     required this.color2,
-    required this.onTap,
   });
   final String title;
   final String subTitle;
   final IconData icon;
   final Color color1;
   final Color color2;
-  final void Function() onTap;
-
-
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (context) => CaptureTipsScreen()));
+      },
       child: Container(
         width: double.infinity,
         height: 100,

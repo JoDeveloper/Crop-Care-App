@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care/presentation/screens/history_screen.dart';
-import 'package:crop_care/presentation/screens/home_screen.dart';
-import 'package:crop_care/presentation/screens/settings_screen.dart';
-import 'package:crop_care/presentation/widgets/gradient_scaffold.dart';
+import 'package:crop_care_app/presentation/screens/history_screen.dart';
+import 'package:crop_care_app/presentation/screens/home_screen.dart';
+import 'package:crop_care_app/presentation/screens/settings_screen.dart';
+import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -38,13 +38,13 @@ class _TabsScreenState extends State<TabsScreen> {
       extendBodyBehindAppBar: true,
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
-        fixedColor: Colors.green,
+        fixedColor: Theme.of(context).colorScheme.primary,
         elevation: 5,
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(Icons.history_rounded), label: 'History'),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
