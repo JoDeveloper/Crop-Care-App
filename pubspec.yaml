@@ -1,5 +1,6 @@
 name: crop_care_app
-description: "app that helps farmers and agronomists quickly validate crop health from a leaf photo, preview an AI diagnosis."
+description: "app that helps farmers and agronomists quickly validate crop
+  health from a leaf photo, preview an AI diagnosis."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -28,9 +29,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cupertino_icons: ^1.0.8 # A package that provides a set of high-quality icons for iOS-style (Cupertino) apps.
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  google_fonts: ^6.3.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0

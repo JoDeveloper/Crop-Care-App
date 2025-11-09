@@ -143,11 +143,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => CaptureTipsScreen(),
-                        ),
-                      );
+                      Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,

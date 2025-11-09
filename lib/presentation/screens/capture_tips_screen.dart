@@ -14,9 +14,8 @@ class CaptureTipsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         // elevation: 0,
-        title: const Text(
+        title: Text(
           'Analyze Your Crop',
-          style: TextStyle(fontWeight: FontWeight.w400),
         ),
       ),
       body: ListView(
@@ -25,12 +24,10 @@ class CaptureTipsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
 
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.end,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 220),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 34),
+                  margin: EdgeInsets.symmetric(horizontal: 32),
                   padding: EdgeInsets.all(22),
                   height: 230,
                   width: double.infinity,
@@ -66,7 +63,7 @@ class CaptureTipsScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 28),
-                
+
                 // capture photo section ===================
                 const CaptureContainer(),
                 const SizedBox(height: 14),

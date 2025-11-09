@@ -29,7 +29,7 @@ class _CaptureContainerState extends State<CaptureContainer> {
           children: [
             Icon(Icons.camera_alt),
             SizedBox(width: 8),
-            Text('Capture Photo', style: TextStyle(fontSize: 16)),
+            Text('Capture Photo', style: TextStyle(fontSize: 18)),
           ],
         ),
       ),
