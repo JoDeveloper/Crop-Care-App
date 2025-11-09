@@ -19,7 +19,7 @@ class UploadeContainer extends StatelessWidget {
           children: [
             Icon(Icons.upload),
             SizedBox(width: 8),
-            Text('Upload from Gallery', style: TextStyle(fontSize: 16)),
+            Text('Upload from Gallery', style: TextStyle(fontSize: 18)),
           ],
         ),
       ),

@@ -71,7 +71,7 @@ class ImagePreviewScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(
                     context,
-                  ).push(MaterialPageRoute(builder: (ctx) => ResultScreen()));
+                  ).pushReplacement(MaterialPageRoute(builder: (ctx) => ResultScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,

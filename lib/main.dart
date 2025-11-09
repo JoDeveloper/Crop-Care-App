@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:crop_care_app/presentation/screens/tabs_screen.dart';
 import 'package:crop_care_app/core/theme/app_theme.dart';
@@ -9,40 +10,33 @@ void main() {
     MaterialApp(
       title: 'Crop Care',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(),
+        
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF22C55E),
           primary: const Color(0xFF22C55E),
           secondary: const Color(0xFFEAB308),
         ),
 
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
-        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            elevation: 4,
-            shadowColor: Colors.black.withOpacity(0.2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            elevation: 0,
+            shadowColor: Colors.transparent,
           ),
         ),
+
         cardTheme: CardThemeData(
-          elevation: 8,
-          shadowColor: Colors.black.withOpacity(0.1),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
           ),
+          elevation: 0,
+          margin: const EdgeInsets.all(8),
         ),
       ),
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      
-      home: TabsScreen(),
+      home: const TabsScreen(),
     ),
   );
 }
