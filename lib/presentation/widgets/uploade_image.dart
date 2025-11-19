@@ -1,14 +1,45 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class UploadeContainer extends StatelessWidget {
+import 'package:crop_care_app/presentation/screens/image_preview_screen.dart';
+import 'package:crop_care_app/presentation/widgets/capture_image.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class UploadeContainer extends StatefulWidget {
   const UploadeContainer({super.key});
 
+  @override
+  State<UploadeContainer> createState() => _UploadeContainerState();
+}
+
+class _UploadeContainerState extends State<UploadeContainer> {
+   void _UploadeImage() async {
+    final pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 100,
+      maxWidth: 1000,
+    );
+
+    if (pickedImage == null) {
+      return;
+    }
+
+    setState(() {
+      image = File(pickedImage.path);
+    });
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ImagePreviewScreen(),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _UploadeImage,
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFEAB308),
           foregroundColor: Colors.white,
