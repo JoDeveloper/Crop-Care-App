@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
-import 'package:crop_care_app/presentation/screens/tabs_screen.dart';
-import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
+import '/presentation/widgets/capture_image.dart';
+import '/presentation/screens/tabs_screen.dart';
+import '/presentation/widgets/gradient_scaffold.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -15,7 +15,10 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientScaffold(
-      appBar: AppBar(title: Text('Analyze Result')),
+      appBar: AppBar(
+        title: Text('Analyze Result'),
+        backgroundColor: Colors.transparent,
+      ),
       extendBodyBehindAppBar: true,
       body: ListView(
         children: [
@@ -33,24 +36,32 @@ class _ResultScreenState extends State<ResultScreen> {
                       borderRadius: BorderRadius.circular(16),
                       child: Hero(
                         tag: 'preview-image',
-                        child: Image.asset(
-                          'assets/images/2.jpeg',
+                        child: Image.file(
+                          image!,
                           fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
                           alignment: Alignment.center,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey[200],
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.broken_image, size: 48, color: Colors.grey[600]),
-                                const SizedBox(height: 8),
-                                Text('Image not available', style: TextStyle(color: Colors.grey[700])),
-                              ],
-                            ),
-                          ),
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                                color: Colors.grey[200],
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.broken_image,
+                                      size: 48,
+                                      color: Colors.grey[600],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Image not available',
+                                      style: TextStyle(color: Colors.grey[700]),
+                                    ),
+                                  ],
+                                ),
+                              ),
                         ),
                       ),
                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
 import 'package:crop_care_app/presentation/screens/result_screen.dart';
+import 'package:crop_care_app/presentation/widgets/capture_image.dart';
 
 class ImagePreviewScreen extends StatelessWidget {
   const ImagePreviewScreen({super.key});
@@ -9,8 +10,9 @@ class ImagePreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: const Color.fromARGB(255, 234, 255, 235),
-      appBar: AppBar(title: Text('Analyze Your Crop')),
+      appBar: AppBar(title: Text('Analyze Your Crop'),backgroundColor: Colors.transparent, ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -30,9 +32,9 @@ class ImagePreviewScreen extends StatelessWidget {
                         panEnabled: true,
                         minScale: 1.0,
                         maxScale: 4.0,
-                        child: Image.asset(
-                          'assets/images/2.jpeg',
-                          fit: BoxFit.fill,
+                        child: Image.file(
+                          image!,
+                          fit: BoxFit.cover,
                           width: double.infinity,
                           height: double.infinity,
                           errorBuilder: (context, error, stackTrace) =>
