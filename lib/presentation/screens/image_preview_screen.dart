@@ -10,8 +10,9 @@ class ImagePreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: const Color.fromARGB(255, 234, 255, 235),
-      appBar: AppBar(title: Text('Analyze Your Crop')),
+      appBar: AppBar(title: Text('Analyze Your Crop'),backgroundColor: Colors.transparent, ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

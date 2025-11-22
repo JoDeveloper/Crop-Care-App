@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/widgets/quick_status_section.dart';
-import 'package:crop_care_app/presentation/widgets/custom_capture_container.dart';
-import 'package:crop_care_app/presentation/widgets/custom_home_app_bar.dart';
+import '/presentation/widgets/quick_status_section.dart';
+import '/presentation/widgets/custom_capture_container.dart';
+import '/presentation/widgets/custom_home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          // home screen CustomHomeAppBar ===================
           const CustomHomeAppBar(),
           const SizedBox(height: 16),
 
@@ -32,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 16),
 
-          // take photo section ===================
-          CustomCaptureContainer(
+          CustomCaptureContainer.capture(
             title: 'Capture Image',
             subTitle: 'Take a photo of your crop leaf',
             icon: Icons.camera_alt,
@@ -42,8 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 14),
 
-          // uploade photo section ===================
-          CustomCaptureContainer(
+          CustomCaptureContainer.upload(
             title: 'Uploade Image',
             subTitle: 'Select from your gallery',
             icon: Icons.upload_rounded,
@@ -54,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 22),
 
-          // ======================================
           QuickStatsSection(),
         ],
       ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:crop_care_app/presentation/widgets/about_app.dart';
-import 'package:crop_care_app/core/theme/app_colors.dart';
-import 'package:crop_care_app/presentation/widgets/settings_section.dart';
-import 'package:crop_care_app/presentation/widgets/gradient_scaffold.dart';
+import '../../data/datasources/local/notification_local_data_source.dart';
+import '/presentation/widgets/about_app.dart';
+import '/core/theme/app_colors.dart';
+import '/presentation/widgets/settings_section.dart';
+import '/presentation/widgets/gradient_scaffold.dart';
+
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -13,9 +15,38 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool notificationToggle = true;
+  bool _notificationsEnabled = true; // Default state
+  bool _isLoading = true;
   bool darkModeToggle = false;
   String _selectedLanguage = 'English';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSwitchState();
+  }
+
+  // Load the initial state when the widget is created
+  Future<void> _loadSwitchState() async {
+    final isEnabled = await loadNotificationPreference();
+    setState(() {
+      _notificationsEnabled = isEnabled;
+      _isLoading = false;
+    });
+  }
+
+  // Handles the switch change event
+  void _onSwitchChanged(bool newValue) async {
+    setState(() {
+      _notificationsEnabled = newValue;
+    });
+
+    if (newValue) {
+      await enableNotifications(); // Call the subscribe function
+    } else {
+      await disableNotifications(); // Call the unsubscribe function
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +83,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Text('Notifications'),
                       subtitle: Text('English'),
                       trailing: Switch(
-                        value: notificationToggle,
-                        onChanged: (newValue) {
-                          setState(() {
-                            notificationToggle =
-                                newValue; // TODO state managment with reverpod
-                          });
-                        },
+                        value: _notificationsEnabled,
+
+                        onChanged: _onSwitchChanged,
                       ),
                     ),
                     ListTile(

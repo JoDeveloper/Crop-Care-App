@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
-import 'package:crop_care_app/presentation/screens/image_preview_screen.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '/presentation/screens/image_preview_screen.dart';
 
  File? image;
 

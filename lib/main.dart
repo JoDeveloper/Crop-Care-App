@@ -1,18 +1,23 @@
+import 'package:crop_care_app/data/datasources/local/notification_local_data_source.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'core/firebase_options.dart';
 
-import 'package:crop_care_app/presentation/screens/tabs_screen.dart';
-import 'package:crop_care_app/core/theme/app_theme.dart';
+import '/presentation/screens/tabs_screen.dart';
+import '/core/theme/app_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await loadNotificationPreference();
   runApp(
     MaterialApp(
       title: 'Crop Care',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(),
-        
+
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF22C55E),
           primary: const Color(0xFF22C55E),

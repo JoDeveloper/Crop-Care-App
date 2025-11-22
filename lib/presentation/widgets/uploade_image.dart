@@ -13,7 +13,7 @@ class UploadeContainer extends StatefulWidget {
 }
 
 class _UploadeContainerState extends State<UploadeContainer> {
-   void _UploadeImage() async {
+   void _uploadeImage() async {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 100,
@@ -39,7 +39,7 @@ class _UploadeContainerState extends State<UploadeContainer> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: _UploadeImage,
+        onPressed: _uploadeImage,
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFEAB308),
           foregroundColor: Colors.white,
