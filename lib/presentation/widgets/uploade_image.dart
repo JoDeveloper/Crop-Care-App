@@ -13,7 +13,7 @@ class UploadeContainer extends StatefulWidget {
 }
 
 class _UploadeContainerState extends State<UploadeContainer> {
-   void _uploadeImage() async {
+  void _uploadeImage() async {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 100,
@@ -24,16 +24,17 @@ class _UploadeContainerState extends State<UploadeContainer> {
       return;
     }
 
+    if (!mounted) return;
+
     setState(() {
       image = File(pickedImage.path);
     });
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const ImagePreviewScreen(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => const ImagePreviewScreen()));
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

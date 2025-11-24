@@ -56,7 +56,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 // HistorySearhBar
                 const HistorySearhBar(),
                 const SizedBox(height: 14),
-                
+
                 // Filter Buttons
                 Row(
                   children: [
@@ -85,7 +85,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
       selected: isSelected,
       onSelected: (_) => _onFilterChanged(value),
       backgroundColor: Colors.white,
-      selectedColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+      selectedColor: Theme.of(
+        context,
+      ).colorScheme.primary.withValues(alpha: 0.2),
       checkmarkColor: Theme.of(context).colorScheme.primary,
       side: BorderSide(
         color: isSelected

@@ -6,7 +6,6 @@ import '/core/theme/app_colors.dart';
 import '/presentation/widgets/settings_section.dart';
 import '/presentation/widgets/gradient_scaffold.dart';
 
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -16,7 +15,6 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true; // Default state
-  bool _isLoading = true;
   bool darkModeToggle = false;
   String _selectedLanguage = 'English';
 
@@ -31,7 +29,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final isEnabled = await loadNotificationPreference();
     setState(() {
       _notificationsEnabled = isEnabled;
-      _isLoading = false;
     });
   }
 
@@ -258,7 +255,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return RadioListTile<String>(
       title: Text(language),
       value: language,
+      // ignore: deprecated_member_use
       groupValue: _selectedLanguage,
+      // ignore: deprecated_member_use
       onChanged: (value) {
         setState(() {
           _selectedLanguage = value!;

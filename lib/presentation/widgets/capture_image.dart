@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '/presentation/screens/image_preview_screen.dart';
 
- File? image;
+File? image;
 
 class CaptureContainer extends StatefulWidget {
   const CaptureContainer({super.key});
@@ -15,7 +15,6 @@ class CaptureContainer extends StatefulWidget {
 }
 
 class _CaptureContainerState extends State<CaptureContainer> {
- 
   void _pickImage() async {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.camera,
@@ -27,16 +26,17 @@ class _CaptureContainerState extends State<CaptureContainer> {
       return;
     }
 
+    if (!mounted) return;
+
     setState(() {
       image = File(pickedImage.path);
     });
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const ImagePreviewScreen(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => const ImagePreviewScreen()));
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
