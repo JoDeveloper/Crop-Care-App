@@ -1,69 +1,38 @@
 import 'package:flutter/material.dart';
 
-import '../../data/datasources/local/notification_local_data_source.dart';
+import 'package:crop_care_app/presentation/providers/settings_provider.dart';
+import 'package:crop_care_app/presentation/providers/theme_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/presentation/widgets/about_app.dart';
 import '/core/theme/app_colors.dart';
 import '/presentation/widgets/settings_section.dart';
 import '/presentation/widgets/gradient_scaffold.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notificationsEnabled = true; // Default state
-  bool darkModeToggle = false;
-  String _selectedLanguage = 'English';
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSwitchState();
-  }
-
-  // Load the initial state when the widget is created
-  Future<void> _loadSwitchState() async {
-    final isEnabled = await loadNotificationPreference();
-    setState(() {
-      _notificationsEnabled = isEnabled;
-    });
-  }
-
-  // Handles the switch change event
-  void _onSwitchChanged(bool newValue) async {
-    setState(() {
-      _notificationsEnabled = newValue;
-    });
-
-    if (newValue) {
-      await enableNotifications(); // Call the subscribe function
-    } else {
-      await disableNotifications(); // Call the unsubscribe function
-    }
-  }
-
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    final settings = ref.watch(settingsProvider);
+    final isDark = ref.watch(themeProvider) == ThemeMode.dark;
+
     return GradientScaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text('Settings', style: TextStyle(fontWeight: FontWeight.w400)),
         backgroundColor: Colors.transparent,
-        // elevation: 0,
       ),
-
       body: ListView(
         children: [
           Padding(
             padding: EdgeInsetsGeometry.all(16),
             child: Column(
               children: [
-                /// General Section
-                ///
-                /// this section is about General it contains Languages, Notifications and Dark Mode
                 SettingsSections(
                   icon: Icons.language,
                   title: 'General',
@@ -72,39 +41,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: _showLanguageDialog,
                       leading: Icon(Icons.language),
                       title: Text('Languages'),
-                      subtitle: Text('English'),
+                      subtitle: Text(settings.language),
                       trailing: Icon(Icons.arrow_forward_ios),
                     ),
                     ListTile(
                       leading: Icon(Icons.notifications),
                       title: Text('Notifications'),
-                      subtitle: Text('English'),
+                      subtitle: Text(
+                        settings.notificationsEnabled ? 'On' : 'Off',
+                      ),
                       trailing: Switch(
-                        value: _notificationsEnabled,
-
-                        onChanged: _onSwitchChanged,
+                        value: settings.notificationsEnabled,
+                        onChanged: (value) {
+                          ref
+                              .read(settingsProvider.notifier)
+                              .toggleNotifications(value);
+                        },
                       ),
                     ),
                     ListTile(
                       leading: Icon(Icons.dark_mode),
                       title: Text('Dark Mode'),
-                      subtitle: Text('Light'),
+                      subtitle: Text(isDark ? 'Dark' : 'Light'),
                       trailing: Switch(
-                        value: darkModeToggle,
-                        onChanged: (newValue) {
-                          setState(() {
-                            darkModeToggle =
-                                newValue; // TODO state managment with reverpod
-                          });
+                        value: isDark,
+                        onChanged: (value) {
+                          ref.read(themeProvider.notifier).toggleTheme(value);
                         },
                       ),
                     ),
                   ],
                 ),
-
-                /// Help & Support Section
-                ///
-                /// this section is about Help & Support it contains User guid, Contact Support and Rate The App
                 const SizedBox(height: 20),
                 SettingsSections(
                   icon: Icons.live_help_outlined,
@@ -145,10 +112,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
-
-                /// Data & Privacy Section
-                ///
-                /// this section is about Data & Privacy it contains User guid, Contact Support and Rate The App
                 const SizedBox(height: 20),
                 SettingsSections(
                   icon: Icons.privacy_tip_outlined,
@@ -185,10 +148,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ),
-
-                /// About Crop Care Section
-                ///
-                /// this section is about About Crop Care it contains Summary info about the app and Development Team
                 const SizedBox(height: 20),
                 Row(
                   children: [
@@ -199,14 +158,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'About Crop Care', // section title
+                      'About Crop Care',
                       style: TextStyle(
-                        color: const Color.fromARGB(
-                          191,
-                          65,
-                          65,
-                          65,
-                        ), // section title color
+                        color: const Color.fromARGB(191, 65, 65, 65),
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -214,12 +168,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 const SizedBox(height: 16),
-
-                /// About App Section
-                ///
-                /// this is the last section in the settings screen .
-                /// this section had additon elements, soo I make a new widget called [AboutApp()]
-                /// contains the addition elements and configuration the needs.
                 AboutApp(),
               ],
             ),
@@ -252,17 +200,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildLanguageOption(String language) {
+    final currentLanguage = ref.read(settingsProvider).language;
     return RadioListTile<String>(
       title: Text(language),
       value: language,
       // ignore: deprecated_member_use
-      groupValue: _selectedLanguage,
+      groupValue: currentLanguage,
       // ignore: deprecated_member_use
       onChanged: (value) {
-        setState(() {
-          _selectedLanguage = value!;
-        });
-        //_saveSettings();
+        if (value != null) {
+          ref.read(settingsProvider.notifier).setLanguage(value);
+        }
         Navigator.of(context).pop();
       },
     );
