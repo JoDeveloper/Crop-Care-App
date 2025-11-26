@@ -3,16 +3,68 @@ import 'package:flutter/material.dart';
 import 'package:crop_care_app/presentation/screens/capture_tips_screen.dart';
 import 'package:crop_care_app/presentation/screens/result_screen.dart';
 import 'package:crop_care_app/presentation/widgets/capture_image.dart';
+import 'package:crop_care_app/services/tensorflow_service.dart';
 
-class ImagePreviewScreen extends StatelessWidget {
+class ImagePreviewScreen extends StatefulWidget {
   const ImagePreviewScreen({super.key});
+
+  @override
+  State<ImagePreviewScreen> createState() => _ImagePreviewScreenState();
+}
+
+class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
+  final TensorFlowService _tensorFlowService = TensorFlowService();
+  bool _isAnalyzing = false;
+
+  @override
+  void dispose() {
+    _tensorFlowService.close();
+    super.dispose();
+  }
+
+  Future<void> _analyzeImage() async {
+    if (image == null) return;
+
+    setState(() {
+      _isAnalyzing = true;
+    });
+
+    try {
+      final result = await _tensorFlowService.runInference(image!);
+
+      if (!mounted) return;
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (ctx) => ResultScreen(
+            diseaseName: result['label'],
+            confidence: result['confidence'],
+            recommendations: List<String>.from(result['recommendations']),
+          ),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error analyzing image: $e')));
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isAnalyzing = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: const Color.fromARGB(255, 234, 255, 235),
-      appBar: AppBar(title: Text('Analyze Your Crop'),backgroundColor: Colors.transparent, ),
+      appBar: AppBar(
+        title: Text('Analyze Your Crop'),
+        backgroundColor: Colors.transparent,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -70,24 +122,32 @@ class ImagePreviewScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(
-                    context,
-                  ).pushReplacement(MaterialPageRoute(builder: (ctx) => ResultScreen()));
-                },
+                onPressed: _isAnalyzing ? null : _analyzeImage,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.psychology_rounded),
-                    SizedBox(width: 8),
-                    Text('Analyze Disease', style: TextStyle(fontSize: 16)),
-                  ],
-                ),
+                child: _isAnalyzing
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.psychology_rounded),
+                          SizedBox(width: 8),
+                          Text(
+                            'Analyze Disease',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
               ),
             ),
             const SizedBox(height: 16),

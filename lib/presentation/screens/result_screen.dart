@@ -5,7 +5,16 @@ import '/presentation/screens/tabs_screen.dart';
 import '/presentation/widgets/gradient_scaffold.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key});
+  final String diseaseName;
+  final double confidence;
+  final List<String> recommendations;
+
+  const ResultScreen({
+    super.key,
+    required this.diseaseName,
+    required this.confidence,
+    required this.recommendations,
+  });
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -90,7 +99,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       const SizedBox(height: 10),
 
                       Text(
-                        'Early blight is a fungal disease that causes dark spots on leaves.',
+                        '${widget.diseaseName} is a condition affecting your crop. Confidence: ${(widget.confidence * 100).toStringAsFixed(1)}%',
                         style: TextStyle(
                           color: const Color.fromARGB(255, 48, 48, 48),
                           fontSize: 16,
@@ -130,20 +139,12 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                       const SizedBox(height: 10),
 
-                      _recomendatons(
-                        context,
-                        'Remove affected leaves immediatly',
+                      ...widget.recommendations.map(
+                        (rec) => Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: _recomendatons(context, rec),
+                        ),
                       ),
-                      const SizedBox(height: 10),
-                      _recomendatons(context, 'Apply fungicide spray'),
-                      const SizedBox(height: 10),
-                      _recomendatons(
-                        context,
-                        'Immprove air circulation around plants',
-                      ),
-                      const SizedBox(height: 10),
-                      _recomendatons(context, 'Avoide overhead watering'),
-                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -253,7 +254,7 @@ class _ResultScreenState extends State<ResultScreen> {
               Column(
                 children: [
                   Text(
-                    'Early Blight',
+                    widget.diseaseName,
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 20,
@@ -261,7 +262,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                   Text(
-                    'Confidence: 87%',
+                    'Confidence: ${(widget.confidence * 100).toStringAsFixed(0)}%',
                     style: TextStyle(
                       color: const Color.fromARGB(255, 95, 95, 95),
                       fontSize: 14,
@@ -273,7 +274,7 @@ class _ResultScreenState extends State<ResultScreen> {
           ),
           // const SizedBox(height: 8),
           LinearProgressIndicator(
-            value: .87,
+            value: widget.confidence,
             backgroundColor: Colors.grey,
             color: Colors.red,
             borderRadius: BorderRadius.circular(6),
